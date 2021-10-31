@@ -1,4 +1,4 @@
-package test.algorithm
+package zhihong.algorithm
 
 
 class AVLTreeNode(value: Int, vararg children: Int?) : BinaryTreeNode(value, *children) {

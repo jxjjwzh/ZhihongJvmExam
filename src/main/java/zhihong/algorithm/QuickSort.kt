@@ -1,4 +1,4 @@
-package test.algorithm
+package zhihong.algorithm
 
 import java.util.*
 import java.util.stream.Collectors

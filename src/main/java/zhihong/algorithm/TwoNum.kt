@@ -1,6 +1,6 @@
-package test.algorithm
+package zhihong.algorithm
 
-import test.ZhihongAuthor
+import zhihong.ZhihongAuthor
 
 @ZhihongAuthor("4test01")
 class TwoNum {

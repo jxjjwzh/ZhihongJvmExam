@@ -1,4 +1,4 @@
-package test.kotlin
+package zhihong.kotlin
 
 class SubClassTest {
 

@@ -1,4 +1,4 @@
-package test;
+package zhihong;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
