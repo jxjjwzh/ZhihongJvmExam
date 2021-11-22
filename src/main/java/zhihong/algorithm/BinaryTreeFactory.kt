@@ -4,6 +4,9 @@ class BinaryTreeFactory(maker: ITreeNodeInstanceMaker) {
 
     private val mMaker: ITreeNodeInstanceMaker = maker
 
+    /**
+     * TODO：其实可以改成lambda，在genBinaryTreeNodeByArray入参，加个lambda表达式
+     */
     interface ITreeNodeInstanceMaker {
         fun newTreeNode(value: Int): BinaryTreeNode
     }

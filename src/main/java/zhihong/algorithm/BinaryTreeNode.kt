@@ -3,6 +3,9 @@ package zhihong.algorithm
 import java.util.*
 import kotlin.math.abs
 
+/**
+ * 二叉树的基本实现
+ */
 open class BinaryTreeNode(value: Int) {
     private var mValue: Int = value
     var mLeft: BinaryTreeNode? = null
@@ -139,6 +142,7 @@ open class BinaryTreeNode(value: Int) {
          * 测试二叉树是否平衡
          */
         private fun testBinaryTreeBalance(treeArray: Array<Int?>) {
+            // 先判断一些特殊情况
             if (treeArray.isEmpty()) {
                 println(OUTPUT_HIGH_BALANCE)
                 return
@@ -148,23 +152,37 @@ open class BinaryTreeNode(value: Int) {
                 println(OUTPUT_HIGH_BALANCE)
                 return
             }
-//            val testCaseTree = BinaryTreeNode(firstNodeValue, *(treeArray.drop(1).toTypedArray()))
+
+            // 将Array格式的二叉树，转化为序列化对象：BinaryTreeNode
+            val testCaseTree = genBinaryTreeByArray(treeArray)
+
+            // 判断二叉树是否平衡
+            if (testCaseTree.isChildrenBalance()) {
+                println(OUTPUT_HIGH_BALANCE)
+            } else {
+                println(OUTPUT_NO_HIGH_BALANCE)
+            }
+        }
+
+        /**
+         * 将Array格式的二叉树，转化为序列化对象：BinaryTreeNode
+         */
+        public fun genBinaryTreeByArray(treeArray: Array<Int?>): BinaryTreeNode {
+            // 将Array格式的二叉树，转化为序列化对象
             val factory = BinaryTreeFactory(object: BinaryTreeFactory.ITreeNodeInstanceMaker {
                 override fun newTreeNode(value: Int): BinaryTreeNode {
                     return BinaryTreeNode(value)
                 }
             })
             val testCaseTree = factory.genBinaryTreeNodeByArray(treeArray, 0) ?: let{
-                println("root为空！")
+                println("genBinaryTreeByArray异常！root为空！")
                 println(OUTPUT_HIGH_BALANCE)
-                return
+                return BinaryTreeNode(0)
             }
+
+            // 打印要被判断的二叉树图形，便于验证准确性
             testCaseTree.printNode()
-            if (testCaseTree.isChildrenBalance()) {
-                println(OUTPUT_HIGH_BALANCE)
-            } else {
-                println(OUTPUT_NO_HIGH_BALANCE)
-            }
+            return testCaseTree
         }
 
         private const val OUTPUT_HIGH_BALANCE = "此二叉树满足高度平衡要求\n"
