@@ -1,5 +1,7 @@
 package zhihong.kotlin
 
+import kotlin.properties.Delegates
+
 class ArrayTest {
 
     companion object {
