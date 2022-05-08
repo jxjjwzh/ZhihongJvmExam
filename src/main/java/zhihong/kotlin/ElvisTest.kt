@@ -4,9 +4,9 @@ object ElvisTest {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        var sub: Sub? = Sub()
+        val sub = Sub()
 //        sub = null
-        val ret = sub?.getNull() ?: let {
+        val ret = sub.getNull() ?: let {
             println("进入Elvis执行语句")
             6
         }

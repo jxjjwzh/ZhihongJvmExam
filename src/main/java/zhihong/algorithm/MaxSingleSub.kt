@@ -28,7 +28,7 @@ package zhihong.algorithm
 object MaxSingleSub {
 
     @JvmStatic
-    fun main(args: Array<String>,) {
+    fun main(args: Array<String>) {
         println("abcabcbb, longest substring without repeating length is: ${exec("abcabcbb")}\n")
         println("bbbbb, longest substring without repeating length is: ${exec("bbbbb")}\n")
         println("pwwkew, longest substring without repeating length is: ${exec("pwwkew")}\n")
@@ -38,7 +38,7 @@ object MaxSingleSub {
     /**
      * 不仅要求出长度，还要求出最长不重复字串
      */
-    private fun exec(source: String,): Int {
+    private fun exec(source: String): Int {
         var maxSubStringLength = 0
         // 如果仅需要求出长度，不需要求出最长字串，则下面两个变量，可以合并成一个
         var subString = ""
