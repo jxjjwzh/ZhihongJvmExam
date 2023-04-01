@@ -4,7 +4,7 @@ object ListComparisonTest {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        testMinus()
+        testDistinct()
     }
 
     private fun test1() {
@@ -37,6 +37,18 @@ object ListComparisonTest {
         list2.add(Element(0, "5"))
         list2.add(Element(1, "6"))
         println("testMinus ret: ${list1 - list2.toSet()}")
+    }
+
+    private fun testDistinct() {
+        val list1 = ArrayList<Element>()
+        list1.add(Element(0, "0"))
+        list1.add(Element(1, "1"))
+        list1.add(Element(2, "2"))
+        list1.add(Element(3, "3"))
+        list1.add(Element(3, "33"))
+        list1.add(Element(3, "333"))
+        val listUnico = list1.distinct()
+        println(listUnico)
     }
 }
 

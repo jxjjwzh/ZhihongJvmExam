@@ -1,14 +1,12 @@
 package zhihong.kotlin
 
-import kotlin.properties.Delegates
-
 class ArrayTest {
 
     companion object {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            testForEachReturn()
+            testArray2String()
         }
 
         private fun testPlus() {
@@ -40,7 +38,7 @@ class ArrayTest {
             val testArrayList: ArrayList<String> = ArrayList()
             // 以下两行都报错：Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 3, Size: 0
             testArrayList.add(3, "333");
-            testArrayList.set(3, "333");
+            testArrayList[3] = "333";
 
             // 手动扩容
             testArrayList.ensureCapacity(11)
@@ -60,6 +58,11 @@ class ArrayTest {
                 return@forEach
                 println("for each 2: ${it.name}") // 不会被执行
             }
+        }
+
+        private fun testArray2String() {
+            val array = arrayOf("fine", "coarse")
+            println("array 2 string: $array, list 2 string: ${array.toList()}")
         }
     }
 }

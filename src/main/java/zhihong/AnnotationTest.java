@@ -16,7 +16,5 @@ class AnnotationTest {
             }
 
         } catch (Exception ignore) {}
-
     }
-
 }
