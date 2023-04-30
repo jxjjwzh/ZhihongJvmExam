@@ -81,7 +81,7 @@ class MaxSubString {
         fun main(args: Array<String>) {
             val maxSubString = MaxSubString()
             // 最大子串是：a
-            maxSubString.lcs("a", "ab")
+            maxSubString.lcs("a", "aaab")
             // 最大子串是：_love_
             maxSubString.lcs("I_love_you", "you_love_him")
         }
