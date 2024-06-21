@@ -1,4 +1,4 @@
-package zhihong.algorithm
+package zhihong.algorithm.tree
 
 /**
  * 100. 相同的树
@@ -30,10 +30,5 @@ object IsSymmetric {
     fun isSymmetric(root: TreeNode?): Boolean {
         root ?: return true
         return isSameTree(root.left, root.right)
-    }
-
-    class TreeNode(var `val`: Int) {
-        var left: TreeNode? = null
-        var right: TreeNode? = null
     }
 }

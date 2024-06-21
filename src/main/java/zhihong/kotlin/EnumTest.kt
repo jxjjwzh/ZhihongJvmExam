@@ -12,11 +12,14 @@ object EnumTest {
         println("colorRed: $colorRed, string: $colorRedStr, num: ${colorRed.num}")
         println("colorGreen: $colorGreen, string: $colorGreenStr, num: ${colorGreen.num}")
         println("colorBlue: $colorBlue, string: $colorBlueStr, num: ${colorBlue.num}")
+
+        println("red(3) < green(2): ${Color.RED < Color.GREEN}")
+        println("blue(1) < green(2): ${Color.BLUE < Color.GREEN}")
     }
 }
 
 enum class Color(val num: Int) {
-    RED(1),
+    RED(3),
     GREEN(2),
-    BLUE(3)
+    BLUE(1)
 }

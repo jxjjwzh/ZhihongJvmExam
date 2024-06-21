@@ -1,6 +1,5 @@
 package zhihong.algorithm
 
-import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
@@ -16,26 +15,21 @@ object ContainerWithMostWater {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val arr01 = arrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7)
-        println(getMaxCapacity(arr01))
+        println(maxArea(intArrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7)))
+        println(maxArea(intArrayOf(1, 1)))
     }
-
-    private fun getMaxCapacity(arr: Array<Int>): Int {
-        var i = 0
-        var j = arr.size - 1
-        var ret = 0
-        while (i < j) {
-            ret = max(ret, getCapacity(i, j, arr))
-            if (arr[i] < arr[j]) {
-                i++
+    private fun maxArea(height: IntArray): Int {
+        var l = 0
+        var r = height.size - 1
+        var maxArea = 0
+        while (l < r) {
+            maxArea = max(maxArea, (r - l) * min(height[l], height[r]))
+            if (height[l] < height[r]) {
+                l++
             } else {
-                j--
+                r--
             }
         }
-        return ret
-    }
-
-    private fun getCapacity(indexFirst: Int, indexSecond: Int, arr: Array<Int>): Int {
-        return min(arr[indexFirst], arr[indexSecond]) * abs(indexFirst - indexSecond)
+        return maxArea
     }
 }

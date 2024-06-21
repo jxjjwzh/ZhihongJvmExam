@@ -6,7 +6,8 @@ class LambdaTest {
         @JvmStatic
         fun main(args: Array<String>) {
 //            lambdaTest()
-            highOrder()
+//            highOrder()
+            lambdaTest02()
         }
 
         private fun commonOK() {
@@ -44,7 +45,7 @@ class LambdaTest {
                         {
                             { valueInt ->
                                 println("正在执行倒数第二层返回函数，入参是：$valueInt")
-                                val methodRet : (Double) -> Int =
+                                val methodRet: (Double) -> Int =
                                     {
                                         1
                                     }
@@ -56,6 +57,12 @@ class LambdaTest {
             println(k01("testString")("string2")(true)(999)(1.4))
         }
 
-
+        private fun lambdaTest02() {
+            val f = {
+                val s = "2222"
+                println("11111, $s")
+            }
+            f()
+        }
     }
 }

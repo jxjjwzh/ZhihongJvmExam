@@ -1,0 +1,46 @@
+class Solution {
+    fun threeSum(nums: IntArray): List<List<Int>> {
+        nums.sort()
+        // 遍历第一个元素，然后第二个元素为左指针，第三个元素为右指针
+        var left = 1 // 因此left就得从1开始，而不是0
+        var right = nums.size - 1
+        val ans = mutableListOf<List<Int>>()
+        (0..nums.size - 3).run {
+            forEach { index ->
+                val num = nums[index]
+                // 如果上一个数字和当前数一样，就跳过
+                if (index > 0 && num == nums[index - 1]) {
+                    return@forEach // continue
+                }
+                // 如果num和最小的left、right相加都大于0，那么结束循环
+                if (num + nums[index + 1] + nums[index + 2] > 0) {
+                    return@run // break
+                }
+                // 如果num和最大的left、right相加，都小于0，那么跳过本循环体，不能结束因为num还有机会变大
+                if (num + nums[nums.size - 1] + nums[nums.size - 2] < 0) {
+                    return@forEach
+                }
+
+                while (left < right) {
+                    val sum = num + nums[left] + nums[right]
+                    if (sum < 0) {
+                        left++
+                    } else if (sum > 0) {
+                        right--
+                    } else { // 恰好等于0
+                        ans.add(listOf(num, nums[left], nums[right]))
+                        right--
+                    }
+                }
+            }
+        }
+        return ans
+    }
+}
+
+//total_testcases:312
+//total_correct:47
+//input_formatted:[0,0,0,0]
+//expected_output:[[0,0,0]]
+//code_output:[[0,0,0],[0,0,0]]
+//last_testcase:[0,0,0,0]

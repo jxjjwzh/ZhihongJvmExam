@@ -57,4 +57,22 @@ object MaxSingleSub {
         println("Longest substring without repeating  is $retSubString")
         return retSubString.length
     }
+
+    fun lengthOfLongestSubstring(source: String): Int {
+        var maxSubStringLength = 0 // 保存已记录的最大长度
+        var subString = "" // 子串记录，用于判断是否重复
+        for (char: Char in source) {
+            if (char in subString) { // 和已记录子串重复，subString变短
+                subString = subString.substringAfter(char)
+                subString += char
+            } else { // 没有和已记录子串重复，subString变长
+                subString += char
+                // subString变长，确认maxSubStringLength是否还是最长记录
+                if (maxSubStringLength < subString.length) {
+                    maxSubStringLength = subString.length
+                }
+            }
+        }
+        return maxSubStringLength
+    }
 }

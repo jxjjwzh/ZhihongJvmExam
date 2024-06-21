@@ -1,12 +1,12 @@
 package zhihong;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class ArrayListTest {
 
     public static void main(String[] args) {
-//        testListSize();
-        testInit();
+        testListSize();
     }
 
     private static void testInit() {
@@ -16,29 +16,36 @@ class ArrayListTest {
 
     private static void testListSize() {
         ArrayList<String> testList = new ArrayList<>();
-        // ä»¥ä¸‹ä¸¤è¡Œéƒ½æŠ¥é”™ï¼šException in thread "main" java.lang.IndexOutOfBoundsException: Index: 3, Size: 0
+        // ÒÔÏÂÁ½ĞĞ¶¼±¨´í£ºException in thread "main" java.lang.IndexOutOfBoundsException: Index: 3, Size: 0
 //        testList.add(3, "333");
 //        testList.set(3, "333");
 
-        // æ·»åŠ æµ‹è¯•æ•°æ®
+        // Ìí¼Ó²âÊÔÊı¾İ
+        testList.add("0");
         testList.add("1");
         testList.add("2");
-        testList.add("2");
-        testList.add("3");
         testList.add("4");
 
-        // ç§»é™¤æ‰€æœ‰çš„"2"
-        removeAllValue(testList, "2");
+        testList.add(3, "3");
+
+        // ÒÆ³ıËùÓĞµÄ"2"
+//        removeAllValue(testList, "2");
         System.out.println(testList);
     }
 
     private static void removeAllValue(ArrayList<String> list, String removeTarget) {
         int size = list.size();
-        // é‡ç‚¹ï¼šä»åå¾€å‰éå†ï¼Œä¿è¯å…ƒç´ ç§»é™¤åï¼Œå¾…éå†éƒ¨åˆ†ä¸‹æ ‡ä¸å˜
+        // ÖØµã£º´ÓºóÍùÇ°±éÀú£¬±£Ö¤ÔªËØÒÆ³ıºó£¬´ı±éÀú²¿·ÖÏÂ±ê²»±ä
         for (int i = size-1; i >= 0; i--) {
             if (removeTarget.equals(list.get(i))) {
                 list.remove(i);
             }
         }
+    }
+
+    private static void testArray() {
+        // ´´½¨Ò»¸ö¶şÎ¬Êı×é
+        int[][] array2d = new int[3][3];
+        System.out.println(Arrays.deepToString(array2d));
     }
 }

@@ -1,0 +1,66 @@
+import kotlin.math.pow
+
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+
+    private val mod = 10.0.pow(9.0) + 7
+    private val cache = mutableMapOf<Int, Int>()
+
+    /**
+     * 记忆化搜索-2
+     * 当前问题：length长度的字符串如何构造
+     * 子问题：构造长度为length的字符串的方案数
+     * 下一个子问题：构造长度为length-one或length-zero的字符串的方案数
+     * 边界条件：长度等于0时，返回1并停止递归
+     * 执行耗时:352 ms,击败了0.00% 的Kotlin用户
+     * 内存消耗:82.5 MB,击败了0.00% 的Kotlin用户
+     */
+    fun countGoodStrings(low: Int, high: Int, zero: Int, one: Int): Int {
+        /**
+         * 求构造一个长度为length的字符串的方案数
+         */
+        fun dfs(length: Int): Int = cache.getOrPut(length) {
+            if (length < 0) {
+                0
+            } else if (length == 0) {
+                1
+            } else {
+                ((dfs(length - zero) + dfs(length - one)) % mod).toInt()
+            }
+        }
+        var ret = 0
+        (low..high).forEach {
+            ret = ((ret + dfs(it)) % mod).toInt() // dfs务必在这里调用，逐步求出每个范围内的解
+        }
+        return ret
+    }
+
+    /**
+     * 记忆化搜索-1
+     * 当前问题：枚举长度为length的字符串如何构造
+     * 子问题：第length个字符末尾添加什么：可以添加zero个0，也可以添加one个1
+     * 下一个子问题：第length+one或length+zero个字符末尾添加什么？zero个0，或者one个1
+     * 边界条件：字符串长度大于等于low时记录答案，大于high时停止递归返回0
+     *
+     * 执行耗时:344 ms,击败了0.00% 的Kotlin用户
+     * 内存消耗:99.1 MB,击败了0.00% 的Kotlin用户
+     */
+    fun countGoodStrings2(low: Int, high: Int, zero: Int, one: Int): Int {
+        /**
+         * 求从length开始，构造到长度为low~high范围的字符串，的方案数
+         */
+        fun dfs(length: Int): Int = cache.getOrPut(length) {
+            if (length > high) {
+                return@getOrPut 0
+            }
+            val curRet = if (length >= low) { // 长度在low和high之间
+                1
+            } else {
+                0
+            }
+            ((dfs(length + one) + dfs(length + zero) + curRet) % mod).toInt()
+        }
+        return dfs(0) // 从0开始枚举，一直枚举到超过限制
+    }
+}
+//leetcode submit region end(Prohibit modification and deletion)
